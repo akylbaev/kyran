@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 
 class Login extends Component {
 
     state = {
-        redirect: false,
+        redirect: true,
         password: '',
         username: ''
     }
@@ -33,7 +33,7 @@ class Login extends Component {
 
         console.log(this.state)
 
-        fetch('/api/user/login', {
+        fetch('/kyran/api/user/login', {
             method: 'post',
             headers: {
                 // Accept: 'application/json',
@@ -45,7 +45,7 @@ class Login extends Component {
                 psw: this.state.password
             }),
         }).then((response) => {
-            response.status === 200 ? this.setRedirect() : alert("Неправильный пароль")
+            response.status === 200 ? this.setRedirect() : alert("Неправильный логин или пароль")
         })
             .catch((error) => {
                 console.error(error);
@@ -83,7 +83,7 @@ class Login extends Component {
                 <div style={{ width: 300, marginTop: 100 }}>
                     <h2 style={{ alignText: 'center', textAlign: 'center', marginBottom: 50 }}>Авторизация</h2>
                     <div className="imput-group mb-3">
-                        <input type="text" className="form-control" placeholder="Логин" onChange={(text) => this.setState({ username: text.target.value })} />
+                        <input type="text" className="form-control" placeholder="Логин" onChange={(text) => this.setState({ username: text.target.value })}/>
                     </div>
                     <div className="imput-group mb-3">
                         <input type="password" className="form-control" placeholder="Пароль" onChange={(text) => this.setState({ password: text.target.value })} />

@@ -41,6 +41,7 @@ class Sidebar extends Component {
                 
                 <Menu.Item><NavLink to='/search'>Поиск</NavLink></Menu.Item>
                 <Menu.Item><NavLink to='/tasks'>Задачи</NavLink></Menu.Item>
+                <Menu.Item><NavLink to='/users'>Пользователи</NavLink></Menu.Item>
                 {/* <Menu.Item><NavLink to='/tasks' onClick={this.setRedirect}>Выход</NavLink></Menu.Item> */}
                 {this.renderRedirect()}
                 <Menu.Item><Button type="primary" onClick={this.setRedirect}>Выход</Button></Menu.Item>
