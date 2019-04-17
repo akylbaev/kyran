@@ -1,33 +1,20 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-// import axios from 'axios'
 
 
 
 class Login extends Component {
 
     state = {
-        redirect: true,
-        password: '',
-        username: ''
+        redirect: false,
+        password: null,
+        username: null,
+        role: null
     }
 
     saveUser() {
         localStorage.setItem('UID', 'userid')
     }
-
-    // handleLogin = () => {
-    //     console.log(this.state)
-    //     if (this.state.username.toLowerCase()=="login"){
-    //         if(this.state.password=="Kyran123"){
-    //             this.setRedirect()
-    //         } else {
-    //             alert("Неправильный пароль")
-    //         }
-    //     } else {
-    //         alert("Неправильный логин")
-    //     }
-    // }
 
     handleLogin = () => {
 
@@ -36,9 +23,7 @@ class Login extends Component {
         fetch('/kyran/api/user/login', {
             method: 'post',
             headers: {
-                // Accept: 'application/json',
                 'Content-Type': 'application/json',
-                // Authorization: 'Basic bWFyYXQ6bWFyYXQxMjM=2'
             },
             body: JSON.stringify({
                 login: this.state.username,
@@ -46,19 +31,14 @@ class Login extends Component {
             }),
         }).then((response) => {
             response.status === 200 ? this.setRedirect() : alert("Неправильный логин или пароль")
+            response.json()
+        }).then((responseJson) => {
+            this.setState({role: responseJson.role})
+            localStorage.setItem('role', this.state.role)
         })
             .catch((error) => {
                 console.error(error);
             });
-
-        // axios.post('/api/user/login', {
-        //     login: this.state.username,
-        //     psw: this.state.password
-        // }).then(res => {
-        //         console.log(res);
-        //     }).catch((error) => {
-        //         console.log(error)
-        //     })
     }
 
 

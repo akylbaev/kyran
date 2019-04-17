@@ -8,12 +8,34 @@ import Login from './views/Login'
 import Search from './views/Search'
 import Tasks from './views/Tasks'
 import Sidebar from './components/Sidebar'
-import Users from './views/Users'
+import AllUsers from './views/Users/AllUsers'
+import AddUser from './views/Users/AddUser'
+import EditUser from './views/Users/EditUser'
+
+const Users = () => (
+  <Switch>
+    <Route exact path='/users' component={AllUsers} />
+    <Route path='/users/add' component={AddUser} />
+    <Route path='/users/:id' component={EditUser} />
+  </Switch>
+)
 
 
 class App extends Component {
 
+  constructor(props){
+    super(props)
+    this.state={
+      role: null
+    }
+  }
+
+  componentDidMount(){
+    this.setState({role: localStorage.getItem('role')})
+  }
+
   render() {
+    console.log(localStorage.getItem('role'))
     return (
       <BrowserRouter>
         <div>
@@ -31,6 +53,7 @@ class App extends Component {
               <PrivateRoute path="/" component={Search} exact/>
               <PrivateRoute path="/search" component={Search} />
               <PrivateRoute path="/tasks" component={Tasks} />
+              {/* {this.state.role==="ADMIN" ? <PrivateRoute path="/users" component={Users} /> : null} */}
               <PrivateRoute path="/users" component={Users} />
 
             </div>

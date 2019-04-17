@@ -6,7 +6,7 @@ class Sidebar extends Component {
 
     state = {
         redirect: false,
-    } 
+    }
 
     deleteUser(){
         localStorage.removeItem('UID')
@@ -41,6 +41,7 @@ class Sidebar extends Component {
                 
                 <Menu.Item><NavLink to='/search'>Поиск</NavLink></Menu.Item>
                 <Menu.Item><NavLink to='/tasks'>Задачи</NavLink></Menu.Item>
+                {/* {this.state.role==="ADMIN"?<Menu.Item><NavLink to='/users'>Пользователи</NavLink></Menu.Item>:null} */}
                 <Menu.Item><NavLink to='/users'>Пользователи</NavLink></Menu.Item>
                 {/* <Menu.Item><NavLink to='/tasks' onClick={this.setRedirect}>Выход</NavLink></Menu.Item> */}
                 {this.renderRedirect()}

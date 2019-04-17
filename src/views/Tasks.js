@@ -49,6 +49,7 @@ class Tasks extends Component {
             dateTo: null,
             country: null,
             city: null,
+            adresat: null,
             createdTasks: [],
             refresh: 0,
             listOfTasks: [],
@@ -98,7 +99,7 @@ class Tasks extends Component {
                 "dateTo": this.state.dateTo,
                 "city": this.state.city,
                 "country": this.state.country,
-                "isNotify": true
+                "isNotify": true,
             }),
         }).then((response) => {
             response.status === 200 ? alert('Задача успешно создана') : alert('Убедитесь в правильности вводимых данных')
